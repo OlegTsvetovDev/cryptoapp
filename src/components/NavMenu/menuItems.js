@@ -10,7 +10,7 @@ export const menuItems = [
   },
   {
     key: 1,
-    label: <Link to="/cryporcurrencies">Cryptocurrencies</Link>,
+    label: <Link to="/cryptocurrencies">Cryptocurrencies</Link>,
     icon: <FundOutlined />,
   },
   {
