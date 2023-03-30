@@ -1,7 +1,6 @@
-import { Navbar, Main, Footer } from './components'
-import 'antd/dist/antd.css'
-import './App.css'
-
+import { Navbar, Main, Footer } from "./components";
+import "antd/dist/antd.css";
+import "./App.css";
 
 function App() {
   return (
@@ -16,8 +15,7 @@ function App() {
         </footer>
       </div>
     </div>
-  )
+  );
 }
 
-
-export default App
+export default App;
