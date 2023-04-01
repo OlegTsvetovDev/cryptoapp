@@ -1,30 +1,22 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { cryptoNewsHeaders, baseNewsUrl } from './settings'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { cryptoNewsHeaders, baseNewsUrl } from "./settings";
+import { createNewsRequest } from "./createNewsRequest";
 
-
-const createNewsRequest = url => ({
-  url: url,
-  headers: cryptoNewsHeaders,
-})
-
-const cryptoNewsApi = createApi({
-  reducerPath: 'cryptoNewsApi',
-  baseQuery: fetchBaseQuery({ baseNewsUrl }),
+export const cryptoNewsApi = createApi({
+  reducerPath: "cryptoNewsApi",
+  baseQuery: fetchBaseQuery({ baseUrl: baseNewsUrl }),
   endpoints: (builder) => ({
     getCryptoNews: builder.query({
       query: ({ newsCategory, count }) => {
-        createNewsRequest(
-          `/news/search?q=${newsCategory}&safeSearch=Off&textFormat=Raw&freshness=Day&count=${count}`
-        )
-      }
-    })
-  })
-})
+        const request = createNewsRequest(
+          `/news/search?q=${newsCategory}&count=${count}&freshness=Day&textFormat=Raw&safeSearch=Off`,
+          cryptoNewsHeaders
+        );
 
-const { useGetCryptoNewsQuery } = cryptoNewsApi
+        return request;
+      },
+    }),
+  }),
+});
 
-
-export {
-  cryptoNewsApi,
-  useGetCryptoNewsQuery
-}
+export const { useGetCryptoNewsQuery } = cryptoNewsApi;

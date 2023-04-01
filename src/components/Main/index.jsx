@@ -1,11 +1,16 @@
-import React from 'react'
-import { Layout } from 'antd'
-import { Route, Switch } from 'react-router-dom'
-import { Homepage, Exchanges, Cryptocurrencies, Cryptodetails, News } from '../'
-
+import React from "react";
+import { Layout } from "antd";
+import { Route, Switch } from "react-router-dom";
+import {
+  Homepage,
+  Exchanges,
+  Cryptocurrencies,
+  Cryptodetails,
+  News,
+} from "../";
 
 const Main = () => {
-  return  (
+  return (
     <Layout>
       <div className="routes">
         <Switch>
@@ -22,13 +27,12 @@ const Main = () => {
             <Cryptodetails />
           </Route>
           <Route exact path="/news">
-            <News />
+            <News simplified={false} />
           </Route>
         </Switch>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-
-export default Main
+export default Main;

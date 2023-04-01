@@ -1,26 +1,28 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { cryptoApiHeaders, baseUrl } from './settings'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { cryptoApiHeaders, baseUrl } from "./settings";
 
-
-const createRequest = url => ({
+const createRequest = (url) => ({
   url: url,
-  headers: cryptoApiHeaders
-})
+  headers: cryptoApiHeaders,
+});
 
-const cryptoApi = createApi({
-  reducerPath: 'cryptoApi',
+export const cryptoApi = createApi({
+  reducerPath: "cryptoApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: (count) => createRequest(`/coins?limit=${count}`),
-    })
-  })
-})
+      query: (count) => {
+        const request = createRequest(`/coins?limit=${count}`);
+        return request;
+      },
+    }),
+    getCryptoByUUID: builder.query({
+      query: (uuid) => {
+        const request = createRequest(`/coin/${uuid}`);
+        return request;
+      },
+    }),
+  }),
+});
 
-const { useGetCryptosQuery } = cryptoApi
-
-
-export {
-  cryptoApi,
-  useGetCryptosQuery
-}
+export const { useGetCryptosQuery, useGetCryptoByUUIDQuery } = cryptoApi;
