@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { cryptoNewsHeaders, baseNewsUrl } from "./settings";
-import { createNewsRequest } from "./createNewsRequest";
 
 export const cryptoNewsApi = createApi({
   reducerPath: "cryptoNewsApi",
@@ -8,10 +7,10 @@ export const cryptoNewsApi = createApi({
   endpoints: (builder) => ({
     getCryptoNews: builder.query({
       query: ({ newsCategory, count }) => {
-        const request = createNewsRequest(
-          `/news/search?q=${newsCategory}&count=${count}&freshness=Day&textFormat=Raw&safeSearch=Off`,
-          cryptoNewsHeaders
-        );
+        const request = {
+          url: `/news/search?q=${newsCategory}&count=${count}&freshness=Day&textFormat=Raw&safeSearch=Off`,
+          headers: cryptoNewsHeaders,
+        };
 
         return request;
       },

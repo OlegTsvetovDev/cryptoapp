@@ -181,6 +181,7 @@ h2.ant-typography.logo {
   justify-content: space-between;
   align-items: center;
   gap: 40px;
+  margin-top: 40px;
 }
 
 .stats-container h2 {
@@ -309,6 +310,7 @@ h2.ant-typography.logo {
 
 .news-card {
   min-height: 300px !important;
+  height: 100%;
 }
 
 .news-image-container {
@@ -328,6 +330,11 @@ h2.ant-typography.logo {
   color: black;
   margin: 10px 0px !important;
 }
+
+.news-filter {
+  margin-bottom: 40px;
+}
+
 .provider-container {
   display: flex;
   justify-content: space-between;

@@ -13,7 +13,7 @@ const demoImgUrl =
 const News = ({ simplified }) => {
   const [newsCategory, setNewsCategory] = useState("cryptocurrency");
   const {
-    data: cryptoNews,
+    data: cryptoNewsData,
     isError,
     error,
     isFetching,
@@ -44,13 +44,11 @@ const News = ({ simplified }) => {
       </div>
     );
 
-  console.log(cryptoNews);
-
   return (
     <>
       {!simplified && <Title level={1}>Latest Crypto News</Title>}
       {!simplified && (
-        <Col span={24}>
+        <Col span={24} className="news-filter">
           <Select
             showSearch
             className="select-news"
@@ -73,9 +71,8 @@ const News = ({ simplified }) => {
           </Select>
         </Col>
       )}
-
       <Row gutter={[24, 24]}>
-        {cryptoNews.value.map((cryptoNews, i) => (
+        {cryptoNewsData.value.map((cryptoNews, i) => (
           <Col key={i} xs={24} sm={12} lg={8}>
             <Card hoverable className="news-card">
               <a href={cryptoNews.url} target="_blank" rel="noreferrer">
