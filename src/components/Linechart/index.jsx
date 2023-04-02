@@ -8,10 +8,10 @@ import { useGetCryptoHistoryByUUIDQuery } from "../../services/cryptoApi";
 import { createChartData } from "./createChartData";
 
 const Linechart = ({ coin, timePeriod }) => {
-  const { data, isLoading, isError, error } = useGetCryptoHistoryByUUIDQuery(
-    coin.uuid,
-    timePeriod
-  );
+  const { data, isLoading, isError, error } = useGetCryptoHistoryByUUIDQuery({
+    uuid: coin.uuid,
+    timePeriod,
+  });
 
   if (isLoading) return <div>Loading</div>;
 
@@ -19,7 +19,6 @@ const Linechart = ({ coin, timePeriod }) => {
 
   const coinChange = data.data.change;
   const coinHistory = data.data.history;
-  //   console.log(data);
   const [chartData, _] = createChartData(coinHistory);
 
   return (
@@ -38,8 +37,6 @@ const Linechart = ({ coin, timePeriod }) => {
       <Line data={chartData} />
     </Row>
   );
-
-  //   <div>{JSON.stringify(data)}</div>;
 };
 
 export default Linechart;

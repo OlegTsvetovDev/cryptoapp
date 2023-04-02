@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Typography, Col, Row, Select } from "antd";
 import HTMLReactParser from "html-react-parser";
+import Linechart from "../Linechart";
 
 import { useGetCryptoByUUIDQuery } from "../../services/cryptoApi";
 import { createGenericStats, createStats } from "./createStats";
-import Linechart from "../Linechart";
-import millify from "millify";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
