@@ -55,7 +55,6 @@ const News = ({ simplified }) => {
             placeholder="Select a crypto"
             optionFilterProp="children"
             onChange={(value) => {
-              console.log(value);
               setNewsCategory(value);
             }}
             filterOption={(input, option) =>

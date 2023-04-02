@@ -2,6 +2,8 @@ export const createChartData = (coinHistory) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
+  // console.log(coinHistory);
+
   for (let i = 0; i < coinHistory.length; i++) {
     coinPrice.push(coinHistory[i].price);
     coinTimestamp.push(new Date(coinHistory[i].timestamp).toLocaleDateString());

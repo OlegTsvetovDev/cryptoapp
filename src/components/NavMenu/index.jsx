@@ -1,13 +1,9 @@
-import React from 'react'
-import { Menu } from 'antd'
-import { menuItems } from './menuItems'
-
+import React from "react";
+import { Menu } from "antd";
+import { menuItems } from "./menuItems";
 
 const NavMenu = () => {
-  return (
-    <Menu items={menuItems} theme="dark" />
-  )
-}
+  return <Menu items={menuItems} theme="dark" />;
+};
 
-
-export default NavMenu
+export default NavMenu;

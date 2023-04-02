@@ -33,6 +33,24 @@ export const cryptoApi = createApi({
         return request;
       },
     }),
+    getCryptoExchanges: builder.query({
+      query: () => {
+        const request = {
+          url: "/exchanges?limit=50",
+          headers: cryptoApiHeaders,
+        };
+        return request;
+      },
+    }),
+    getCryptoExchangesByUUID: builder.query({
+      query: ({ uuid }) => {
+        const request = {
+          url: `coin/${uuid}`,
+          headers: cryptoApiHeaders,
+        };
+        return request;
+      },
+    }),
   }),
 });
 
@@ -40,4 +58,6 @@ export const {
   useGetCryptosQuery,
   useGetCryptoByUUIDQuery,
   useGetCryptoHistoryByUUIDQuery,
+  useGetCryptoExchangesQuery,
+  useGetCryptoExchangesByUUIDQuery,
 } = cryptoApi;

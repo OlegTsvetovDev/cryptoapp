@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import {
   Homepage,
   Exchanges,
+  Exchangedetails,
   Cryptocurrencies,
   Cryptodetails,
   News,
@@ -14,18 +15,15 @@ const Main = () => {
     <Layout>
       <div className="routes">
         <Switch>
-          <Route exact path="/">
-            <Homepage />
-          </Route>
-          <Route exact path="/exchanges">
-            <Exchanges />
-          </Route>
-          <Route exact path="/cryptocurrencies">
-            <Cryptocurrencies />
-          </Route>
-          <Route exact path="/crypto/:coinId">
-            <Cryptodetails />
-          </Route>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/exchanges" component={Exchanges} />
+          <Route exact path="/exchanges/:coinId" component={Exchangedetails} />
+          <Route exact path="/cryptocurrencies" component={Cryptocurrencies} />
+          <Route
+            exact
+            path="/cryptocurrencies/:coinId"
+            component={Cryptodetails}
+          />
           <Route exact path="/news">
             <News simplified={false} />
           </Route>

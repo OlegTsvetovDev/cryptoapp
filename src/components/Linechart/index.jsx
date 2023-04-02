@@ -19,7 +19,7 @@ const Linechart = ({ coin, timePeriod }) => {
 
   const coinChange = data.data.change;
   const coinHistory = data.data.history;
-  const [chartData, _] = createChartData(coinHistory);
+  const [chartData] = createChartData(coinHistory);
 
   return (
     <Row className="chart-header">

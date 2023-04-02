@@ -49,7 +49,6 @@ const Cryptodetails = () => {
         placeholder="Select Time Period"
         onChange={(value) => {
           setTimePeriod(value);
-          console.log("timePeriod changed");
         }}
       >
         {TIME.map((date) => (
@@ -58,13 +57,7 @@ const Cryptodetails = () => {
           </Option>
         ))}
       </Select>
-      <Linechart
-        // coinHistory={coinHistory}
-        // currentPrice={millify(coin.price)}
-        // coinName={coin.name}
-        coin={coin}
-        timePeriod={timePeriod}
-      />
+      <Linechart coin={coin} timePeriod={timePeriod} />
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
