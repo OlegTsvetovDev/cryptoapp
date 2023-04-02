@@ -23,7 +23,24 @@ export const cryptoApi = createApi({
         return request;
       },
     }),
+    getCryptoHistoryByUUID: builder.query({
+      query: (uuid, timeperiod) => {
+        if (!timeperiod) timeperiod = "24h";
+        const request = {
+          url: `coin/${uuid}/history/?timePeriod=${timeperiod}`,
+          headers: cryptoApiHeaders,
+        };
+
+        console.log("request fired");
+
+        return request;
+      },
+    }),
   }),
 });
 
-export const { useGetCryptosQuery, useGetCryptoByUUIDQuery } = cryptoApi;
+export const {
+  useGetCryptosQuery,
+  useGetCryptoByUUIDQuery,
+  useGetCryptoHistoryByUUIDQuery,
+} = cryptoApi;
