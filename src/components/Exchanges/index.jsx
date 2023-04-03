@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { Input, Row, Col, Typography, Collapse, Card } from "antd";
+import { Input, Row, Col, Typography, Card } from "antd";
 import { Link } from "react-router-dom";
 
 import { useGetCryptosQuery } from "../../services/cryptoApi";
 import millify from "millify";
 
-const { Title, Text } = Typography;
-const { Panel } = Collapse;
-const text = "loremaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+const { Title } = Typography;
 
 const Exchanges = ({ simplified }) => {
   const [query, setQuery] = useState("");
@@ -17,12 +15,6 @@ const Exchanges = ({ simplified }) => {
     isError,
     error,
   } = useGetCryptosQuery(100);
-  // const {
-  //   data: cryptoExchanges,
-  //   isFetching: isEx,
-  //   isError,
-  //   error,
-  // } = useGetCryptoExchangesQuery();
 
   if (isFetching) {
     return <div>Loading</div>;
@@ -66,7 +58,6 @@ const Exchanges = ({ simplified }) => {
                 <p>Price: {millify(crypto.price)}$</p>
                 <p>Market cap: {millify(crypto.marketCap)}$</p>
                 <p>Daily change: {millify(crypto.change)}%</p>
-                {/*<p>24h volume: {millify(crypto["24hVolume"])}</p>*/}
               </Card>
             </Link>
           </Col>

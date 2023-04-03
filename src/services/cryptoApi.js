@@ -43,9 +43,9 @@ export const cryptoApi = createApi({
       },
     }),
     getCryptoExchangesByUUID: builder.query({
-      query: ({ uuid }) => {
+      query: (uuid) => {
         const request = {
-          url: `coin/${uuid}`,
+          url: `coin/${uuid}/exchanges`,
           headers: cryptoApiHeaders,
         };
         return request;
