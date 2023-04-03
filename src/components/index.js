@@ -8,3 +8,4 @@ export { default as Cryptocurrencies } from "./Cryptocurrencies/";
 export { default as Cryptodetails } from "./Cryptodetails/";
 export { default as News } from "./News/";
 export { default as Footer } from "./Footer/";
+export { default as NotFound } from "./NotFound/";

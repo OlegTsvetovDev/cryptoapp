@@ -8,6 +8,7 @@ import {
   Cryptocurrencies,
   Cryptodetails,
   News,
+  NotFound,
 } from "../";
 
 const Main = () => {
@@ -24,9 +25,8 @@ const Main = () => {
             path="/cryptocurrencies/:coinId"
             component={Cryptodetails}
           />
-          <Route exact path="/news">
-            <News simplified={false} />
-          </Route>
+          <Route exact path="/news" component={News} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Layout>

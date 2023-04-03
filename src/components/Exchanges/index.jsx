@@ -1,20 +1,28 @@
-import React from "react";
-import { Col, Typography, Collapse } from "antd";
+import React, { useState } from "react";
+import { Input, Row, Col, Typography, Collapse, Card } from "antd";
+import { Link } from "react-router-dom";
+
 import { useGetCryptosQuery } from "../../services/cryptoApi";
+import millify from "millify";
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 const text = "loremaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
-const Exchanges = () => {
-  const { data: cryptos, isFetching, isError, error } = useGetCryptosQuery(100);
+const Exchanges = ({ simplified }) => {
+  const [query, setQuery] = useState("");
+  const {
+    data: cryptosData,
+    isFetching,
+    isError,
+    error,
+  } = useGetCryptosQuery(100);
   // const {
   //   data: cryptoExchanges,
   //   isFetching: isEx,
   //   isError,
   //   error,
   // } = useGetCryptoExchangesQuery();
-  // console.log(cryptoExchanges);
 
   if (isFetching) {
     return <div>Loading</div>;
@@ -24,11 +32,47 @@ const Exchanges = () => {
     return <div>{JSON.stringify(error)}</div>;
   }
 
+  const filteredCryptos = cryptosData.data.coins;
+  console.log(filteredCryptos);
+
   return (
-    <Col>
-      <Title level={2}>Current Crypto Exchanges</Title>
-      <Col></Col>
-    </Col>
+    <>
+      {!simplified && <Title level={1}>Current Crypto Exchanges</Title>}
+      {!simplified && (
+        <Row className="search-crypto">
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={"Search for cryptocurrencies"}
+          />
+        </Row>
+      )}
+      {filteredCryptos.length === 0 && <div>No Cryptos found</div>}
+      <Row gutter={[32, 32]} className="crypto-card-container">
+        {filteredCryptos.map((crypto) => (
+          <Col xs={24} sm={12} lg={6} key={crypto.uuid} className="crypto-card">
+            <Link to={`/exchanges/${crypto.uuid}`}>
+              <Card
+                title={`${crypto.rank}. ${crypto.name}`}
+                extra={
+                  <img
+                    className="crypto-image"
+                    src={crypto.iconUrl}
+                    alt={crypto.symbol}
+                  />
+                }
+                hoverable
+              >
+                <p>Price: {millify(crypto.price)}$</p>
+                <p>Market cap: {millify(crypto.marketCap)}$</p>
+                <p>Daily change: {millify(crypto.change)}%</p>
+                {/*<p>24h volume: {millify(crypto["24hVolume"])}</p>*/}
+              </Card>
+            </Link>
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 };
 
